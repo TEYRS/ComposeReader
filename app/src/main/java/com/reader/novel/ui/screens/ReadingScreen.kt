@@ -49,7 +49,7 @@ fun ReadingScreen(
     val settingsSheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
     
-    // 使用 Material3 的 TopAppBarScrollBehavior
+    
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
         rememberTopAppBarState(),
         canScroll = { true }
@@ -60,7 +60,7 @@ fun ReadingScreen(
     val surfaceColor = if (isDarkMode) Color(0xFF2A2A2A) else Color.White
     val primaryColor = if (isDarkMode) Color(0xFFBB86FC) else ReaderPrimary
     
-    // 直接使用 currentChapterIndex 来获取当前章节
+    
     val currentChapter = remember(currentChapterIndex, chapters) {
         if (chapters.isNotEmpty() && currentChapterIndex in chapters.indices) {
             chapters[currentChapterIndex]
@@ -72,7 +72,7 @@ fun ReadingScreen(
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            // 使用 LargeTopAppBar 以获得更顺滑的动画
+            
             LargeTopAppBar(
                 title = {
                     Text(
@@ -175,10 +175,10 @@ fun ReadingScreen(
                 .padding(innerPadding)
                 .background(backgroundColor)
         ) {
-            // 阅读内容
+            
             val listState = rememberLazyListState()
             
-            // 当章节切换时，自动滚动到顶部
+            
             LaunchedEffect(currentChapterIndex) {
                 listState.animateScrollToItem(0)
             }
@@ -194,10 +194,10 @@ fun ReadingScreen(
                 )
             ) {
                 item {
-                    // 在顶部添加一些空白，防止内容被顶栏遮挡
+                    
                     Spacer(modifier = Modifier.height(140.dp))
                     
-                    // 章节标题
+                    
                     Text(
                         text = currentChapter?.title ?: "加载中...",
                         style = MaterialTheme.typography.headlineSmall.copy(
@@ -212,7 +212,7 @@ fun ReadingScreen(
                     
                     Spacer(modifier = Modifier.height(32.dp))
                     
-                    // 章节内容
+                    
                     Text(
                         text = currentChapter?.content ?: "暂无内容",
                         style = MaterialTheme.typography.bodyLarge.copy(
@@ -229,7 +229,7 @@ fun ReadingScreen(
                 }
             }
             
-            // 检测滚动位置，显示/隐藏底部导航
+            
             val showBottomNav by remember {
                 derivedStateOf {
                     val totalItems = listState.layoutInfo.totalItemsCount
@@ -245,7 +245,7 @@ fun ReadingScreen(
                 }
             }
             
-            // 底部章节导航
+            
             androidx.compose.animation.AnimatedVisibility(
                 visible = showBottomNav,
                 enter = slideInVertically(initialOffsetY = { it }),
@@ -274,7 +274,7 @@ fun ReadingScreen(
             }
         }
         
-        // 章节选择底部弹窗
+        
         if (showChaptersSheet) {
             Box(
                 modifier = Modifier
@@ -329,7 +329,7 @@ fun ReadingScreen(
             }
         }
         
-        // 阅读设置底部弹窗
+        
         if (showSettingsSheet) {
             Box(
                 modifier = Modifier
@@ -416,7 +416,7 @@ fun BottomChapterNavigation(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // 上一章按钮
+            
             Surface(
                 onClick = onPreviousChapter,
                 modifier = Modifier
@@ -441,7 +441,7 @@ fun BottomChapterNavigation(
             
             Spacer(modifier = Modifier.width(16.dp))
             
-            // 章节信息
+            
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.weight(1.5f)
@@ -463,7 +463,7 @@ fun BottomChapterNavigation(
             
             Spacer(modifier = Modifier.width(16.dp))
             
-            // 下一章按钮
+            
             Surface(
                 onClick = onNextChapter,
                 modifier = Modifier
@@ -529,7 +529,7 @@ fun ChaptersSheet(
                             .padding(horizontal = 16.dp, vertical = 14.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        // 章节序号
+                        
                         Box(
                             modifier = Modifier
                                 .size(32.dp)
@@ -551,7 +551,7 @@ fun ChaptersSheet(
                         
                         Spacer(modifier = Modifier.width(16.dp))
                         
-                        // 章节标题
+                        
                         Column(
                             modifier = Modifier.weight(1f)
                         ) {
@@ -602,7 +602,7 @@ fun ReadingSettingsPanel(
     onClose: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // 根据暗夜模式设置文字颜色
+    
     val titleColor = if (isDarkMode) Color(0xFFE0E0E0) else Color.Black
     val labelColor = if (isDarkMode) Color(0xFFCCCCCC) else Color.Gray
     val secondaryTextColor = if (isDarkMode) Color(0xFFCCCCCC) else Color.Gray
@@ -611,7 +611,7 @@ fun ReadingSettingsPanel(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 拖拽指示器
+        
         Box(
             modifier = Modifier
                 .padding(vertical = 8.dp)
@@ -627,7 +627,7 @@ fun ReadingSettingsPanel(
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold
             ),
-            color = titleColor, // 添加颜色设置
+            color = titleColor, 
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp),
@@ -636,13 +636,13 @@ fun ReadingSettingsPanel(
         
         Spacer(modifier = Modifier.height(8.dp))
         
-        // 字体大小调节
+        
         Text(
             text = "字体大小",
             style = MaterialTheme.typography.titleMedium.copy(
                 fontSize = 16.sp
             ),
-            color = labelColor, // 使用 labelColor
+            color = labelColor, 
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)
@@ -677,7 +677,7 @@ fun ReadingSettingsPanel(
                 }
             }
             
-            // 字体大小显示
+            
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
@@ -704,7 +704,7 @@ fun ReadingSettingsPanel(
                 Text(
                     text = "字号",
                     style = MaterialTheme.typography.labelSmall,
-                    color = secondaryTextColor // 使用 secondaryTextColor
+                    color = secondaryTextColor 
                 )
             }
             
@@ -731,10 +731,10 @@ fun ReadingSettingsPanel(
         
         Spacer(modifier = Modifier.height(20.dp))
         
-        // 字体大小滑块
+        
         Slider(
             value = fontSize.toFloat(),
-            onValueChange = { /* 通过按钮控制 */ },
+            onValueChange = {  },
             valueRange = 12f..30f,
             steps = 17,
             colors = SliderDefaults.colors(
@@ -749,7 +749,7 @@ fun ReadingSettingsPanel(
         
         Spacer(modifier = Modifier.height(24.dp))
         
-        // 主题切换
+        
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -763,7 +763,7 @@ fun ReadingSettingsPanel(
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontSize = 16.sp
                     ),
-                    color = labelColor // 使用 labelColor
+                    color = labelColor 
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
@@ -799,7 +799,7 @@ fun ReadingSettingsPanel(
         
         Spacer(modifier = Modifier.height(32.dp))
         
-        // 完成按钮
+        
         Surface(
             onClick = onClose,
             modifier = Modifier
@@ -822,7 +822,7 @@ fun ReadingSettingsPanel(
             }
         }
         
-        // 为底部导航栏留出空间
+        
         Spacer(modifier = Modifier.height(16.dp))
     }
 }

@@ -52,7 +52,7 @@ fun HomeScreen(
     val fontSize by viewModel.fontSize.collectAsState()
     val isDarkMode by viewModel.isDarkMode.collectAsState()
     
-    // 根据暗夜模式选择颜色
+    
     val backgroundColor = if (isDarkMode) NightBackground else ReaderBackground
     val textColor = if (isDarkMode) NightText else Color.Black
     val cardColor = if (isDarkMode) Color(0xFF2A2A2A) else Color.White
@@ -94,7 +94,7 @@ fun HomeScreen(
                     .padding(bottom = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // 书籍封面
+                
                 Surface(
                     modifier = Modifier
                         .size(140.dp)
@@ -117,7 +117,7 @@ fun HomeScreen(
                 
                 Spacer(modifier = Modifier.height(20.dp))
                 
-                // 书籍标题
+                
                 Text(
                     text = viewModel.bookTitle,
                     style = MaterialTheme.typography.headlineSmall.copy(fontSize = 22.sp),
@@ -129,7 +129,7 @@ fun HomeScreen(
                 
                 Spacer(modifier = Modifier.height(6.dp))
                 
-                // 作者
+                
                 Text(
                     text = viewModel.bookAuthor,
                     style = MaterialTheme.typography.titleSmall.copy(fontSize = 14.sp),
@@ -140,7 +140,7 @@ fun HomeScreen(
                 
                 Spacer(modifier = Modifier.height(20.dp))
                 
-                // 简介
+                
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -174,7 +174,7 @@ fun HomeScreen(
                 
                 Spacer(modifier = Modifier.height(20.dp))
                 
-                // 开始阅读按钮
+                
                 FilledTonalButton(
                     onClick = onStartReading,
                     modifier = Modifier
@@ -195,7 +195,7 @@ fun HomeScreen(
                 
                 Spacer(modifier = Modifier.height(16.dp))
                 
-                // 章节统计
+                
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()

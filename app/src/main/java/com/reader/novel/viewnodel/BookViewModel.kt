@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class BookViewModel : ViewModel() {
     
-    // 小说信息
+    
     val bookTitle = "隐卫：江湖最后的盾"
     val bookAuthor = "作者：李逍遥"
     val bookDescription = "一个关于守护与抉择的故事，虚拟与现实在此交汇。他不是英雄，他只是——江湖最后的盾。"
@@ -33,7 +33,7 @@ class BookViewModel : ViewModel() {
     
     private fun loadBookData() {
         viewModelScope.launch {
-            // 加载小说章节
+            
             val chaptersList = listOf(
                 Chapter(
                     id = "1",

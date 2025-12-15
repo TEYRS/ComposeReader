@@ -22,10 +22,7 @@ import com.reader.novel.viewmodel.BookViewModel
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
-        // 先设置状态栏相关的基础配置
         setWindowFlags()
-        
         setContent {
             MyComposeApplicationTheme {
                 Surface(
@@ -36,16 +33,13 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        
-        // 在setContent之后设置insetsController
         setInsetsController()
     }
     
     private fun setWindowFlags() {
-        // 使用 WindowCompat 来兼容不同版本的 Android
+        
         WindowCompat.setDecorFitsSystemWindows(window, false)
         
-        // 对于 Android 23-29（API 级别 23-29）
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             var systemUiVisibility = window.decorView.systemUiVisibility
             systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -54,16 +48,14 @@ class MainActivity : ComponentActivity() {
             window.decorView.systemUiVisibility = systemUiVisibility
         }
         
-        // 设置状态栏和导航栏颜色为透明
         window.statusBarColor = android.graphics.Color.TRANSPARENT
         window.navigationBarColor = android.graphics.Color.TRANSPARENT
     }
     
     private fun setInsetsController() {
-        // 只有在视图初始化完成后才设置 insetsController
-        // 对于 Android 30+（API 级别 30）
+        
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            // 使用 post 确保在视图创建完成后执行
+            
             window.decorView.post {
                 window.insetsController?.setSystemBarsAppearance(
                     android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
